@@ -1,0 +1,16 @@
+{
+  "name": "pixly-backend-express",
+  "version": "1.0.0",
+  "description": "backend API for pixly",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.0.0-beta.1",
+    "node": "^17.7.1"
+  }
+}

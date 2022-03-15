@@ -41,12 +41,21 @@
 Upload w/ Title -> Static Folder + JSON Server Metadata (/Images)
 
 - ROUTES (JSON Server):
+
+  - Done: json server setup
   - POST /images
+  - //TODO: Create Model methods for images save and get (save to folder)
+
+- Extract & parse EXIF Data
+  - //Done: find EXIF library
+  - //TODO: handle file upload
 
 View -> Uploaded files (React) \* GET /images
 
+- //TODO: Create file list view in React
+
 ## Phase 2
 
-Add Search filtering (o)
+Add Search filtering
 
-//TODO: do the thing
+- location?
