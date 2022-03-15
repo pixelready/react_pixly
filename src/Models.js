@@ -23,11 +23,12 @@ class PixlyApi{
         }
       }
 
-    static async saveImage(imageFile, metaData) {
+    static async saveImage(imageData) {
         // TODO: extract exif data
         // TODO: pass binary file to save 
         // TODO: backend helper will write to file (fs)
-        const response = await this.request(`images`, metaData, 'post');
+
+        const response = await this.request(`images`, imageData, 'post');
     }
 
 

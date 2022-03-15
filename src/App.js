@@ -1,12 +1,24 @@
 
 import './App.css';
 import ImageForm from './ImageForm';
+import PixlyApi from './Models';
 
 function App() {
+
+
+  async function saveImage(formData){
+    // TODO: PixlyApi.post(formdata);
+    console.log("formData in saveImage", formData);
+    const response = await PixlyApi.post(formData);
+  }
+
+
+
+
   return (
     <div className="App">
       <h1>Welcome to Pix.ly</h1>
-      <ImageForm/>
+      <ImageForm saveImage={saveImage}/>
     </div>
   );
 }
