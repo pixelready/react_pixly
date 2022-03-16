@@ -1,12 +1,20 @@
 // Load the AWS SDK for Node.js
-import AWS from 'aws-sdk';
-import fs from 'fs';
-import path from 'path';
-import EXIF from "exif-js";
+
+
+require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
+
+const AWS = require('aws-sdk');
+
+
+
+
+const BUCKET_NAME = process.env.BUCKET_NAME;
 
 
 // Set the AWS region 
-AWS.config.update({region: 'REGION'});
+AWS.config.update({region: 'us-west-1'});
 
 const SAVE_IMAGE_PATH = "../images/";
 
@@ -57,4 +65,4 @@ class imageFileHandler{
     }
 }
 
-export default imageFileHandler;
+module.exports = imageFileHandler;

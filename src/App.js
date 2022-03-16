@@ -9,7 +9,7 @@ function App() {
   async function saveImage(formData){
     // TODO: PixlyApi.post(formdata);
     console.log("formData in saveImage", formData);
-    const response = await PixlyApi.post(formData);
+    const response = await PixlyApi.saveImage(formData);
   }
 
 

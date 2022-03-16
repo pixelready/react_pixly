@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EXIF from "exif-js";
 
-function ImageForm({saveImage}) {
+function ImageForm({ saveImage }) {
   //ADDED: image form handling, button to submit save?
   //Handle change and handle submit, form input state
   const [formData, setFormData] = useState(null);
@@ -17,18 +17,23 @@ function ImageForm({saveImage}) {
     const imageFile = evt.target.files[0];
     console.log(imageFile);
 
-
     // EXIF.getData needs callback fn, setformData here? What is data look like?
     // possible: {image: "", exifdata: {location: ..., }}
     // TODO: fix setFormData handling image on change
     let data = EXIF.getData(imageFile, function () {
-      let exifData = EXIF.pretty(imageFile);
-      const make = EXIF.getTag(imageFile, "Make");
-      console.log("exifData", make);
-      setFormData((fData)=>({
-          ...fData,
-          image:imageFile,
-          make:make,
+      // let exifData = EXIF.pretty(imageFile);
+      const exifData = EXIF.getAllTags(imageFile);
+      console.log("exifData", exifData);
+      setFormData((fData) => ({
+        ...fData,
+        image: imageFile,
+        Make: exifData.Make,
+        Model: exifData.Model,
+        ISOSpeedRatings: exifData.ISOSpeedRatings,
+        FocalLengthIn35mmFilm: exifData.FocalLengthIn35mmFilm,
+        DateTime: exifData.DateTime,
+        PixelXDimension: exifData.PixelXDimension,
+        PixelYDimension: exifData.PixelYDimension,
       }));
     });
     console.log("data", data);

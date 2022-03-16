@@ -1,3 +1,132 @@
 {
-  "images": []
+  "images": [
+    {
+      "image": {
+        "exifdata": {
+          "Make": "SONY",
+          "Model": "ILCE-7M3",
+          "XResolution": 240,
+          "YResolution": 240,
+          "ResolutionUnit": 2,
+          "Software": "Adobe Lightroom 4.2 (Macintosh)",
+          "DateTime": "2021:05:09 13:21:19",
+          "ExifIFDPointer": 194,
+          "ExposureTime": 20,
+          "FNumber": 5.6,
+          "ExposureProgram": "Manual",
+          "ISOSpeedRatings": 100,
+          "undefined": "24-70mm F2.8 DG DN | Art 019",
+          "ExifVersion": "0231",
+          "DateTimeOriginal": "2021:05:09 05:16:08",
+          "DateTimeDigitized": "2021:05:09 05:16:08",
+          "ShutterSpeedValue": -4.321928,
+          "ApertureValue": 4.970854,
+          "BrightnessValue": -8.40859375,
+          "ExposureBias": 0,
+          "MaxApertureValue": 2.96875,
+          "MeteringMode": "Spot",
+          "LightSource": "Unknown",
+          "Flash": "Flash did not fire, compulsory flash mode",
+          "FocalLength": 24,
+          "ColorSpace": 1,
+          "FocalPlaneXResolution": 1677.41796875,
+          "FocalPlaneYResolution": 1677.41796875,
+          "FocalPlaneResolutionUnit": 3,
+          "FileSource": "DSC",
+          "SceneType": "Directly photographed",
+          "CustomRendered": "Normal process",
+          "ExposureMode": 1,
+          "WhiteBalance": "Auto white balance",
+          "DigitalZoomRation": 1,
+          "FocalLengthIn35mmFilm": 24,
+          "SceneCaptureType": "Standard",
+          "Contrast": "Normal",
+          "Saturation": "Normal",
+          "Sharpness": "Normal",
+          "thumbnail": {
+            "Compression": 6,
+            "XResolution": 72,
+            "YResolution": 72,
+            "ResolutionUnit": 2,
+            "JpegIFOffset": 964,
+            "JpegIFByteCount": 8927,
+            "blob": {}
+          }
+        },
+        "iptcdata": {
+          "dateCreated": "20210509"
+        }
+      },
+      "Make": "SONY",
+      "Model": "ILCE-7M3",
+      "ISOSpeedRatings": 100,
+      "FocalLengthIn35mmFilm": 24,
+      "DateTime": "2021:05:09 13:21:19",
+      "id": 1
+    },
+    {
+      "image": {
+        "exifdata": {
+          "Make": "SONY",
+          "Model": "ILCE-7M3",
+          "XResolution": 240,
+          "YResolution": 240,
+          "ResolutionUnit": 2,
+          "Software": "Adobe Lightroom 4.2 (Macintosh)",
+          "DateTime": "2021:05:09 13:21:19",
+          "ExifIFDPointer": 194,
+          "ExposureTime": 20,
+          "FNumber": 5.6,
+          "ExposureProgram": "Manual",
+          "ISOSpeedRatings": 100,
+          "undefined": "24-70mm F2.8 DG DN | Art 019",
+          "ExifVersion": "0231",
+          "DateTimeOriginal": "2021:05:09 05:16:08",
+          "DateTimeDigitized": "2021:05:09 05:16:08",
+          "ShutterSpeedValue": -4.321928,
+          "ApertureValue": 4.970854,
+          "BrightnessValue": -8.40859375,
+          "ExposureBias": 0,
+          "MaxApertureValue": 2.96875,
+          "MeteringMode": "Spot",
+          "LightSource": "Unknown",
+          "Flash": "Flash did not fire, compulsory flash mode",
+          "FocalLength": 24,
+          "ColorSpace": 1,
+          "FocalPlaneXResolution": 1677.41796875,
+          "FocalPlaneYResolution": 1677.41796875,
+          "FocalPlaneResolutionUnit": 3,
+          "FileSource": "DSC",
+          "SceneType": "Directly photographed",
+          "CustomRendered": "Normal process",
+          "ExposureMode": 1,
+          "WhiteBalance": "Auto white balance",
+          "DigitalZoomRation": 1,
+          "FocalLengthIn35mmFilm": 24,
+          "SceneCaptureType": "Standard",
+          "Contrast": "Normal",
+          "Saturation": "Normal",
+          "Sharpness": "Normal",
+          "thumbnail": {
+            "Compression": 6,
+            "XResolution": 72,
+            "YResolution": 72,
+            "ResolutionUnit": 2,
+            "JpegIFOffset": 964,
+            "JpegIFByteCount": 8927,
+            "blob": {}
+          }
+        },
+        "iptcdata": {
+          "dateCreated": "20210509"
+        }
+      },
+      "Make": "SONY",
+      "Model": "ILCE-7M3",
+      "ISOSpeedRatings": 100,
+      "FocalLengthIn35mmFilm": 24,
+      "DateTime": "2021:05:09 13:21:19",
+      "id": 2
+    }
+  ]
 }
