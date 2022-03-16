@@ -44,7 +44,7 @@ class imageFileHandler{
                 return err;
             } if (data) {
                 console.log("Upload Success", data.Location);
-                return data.location;
+                return data.Location;
             }
          });
          

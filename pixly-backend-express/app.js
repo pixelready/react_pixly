@@ -25,8 +25,10 @@ app.get("/", (req, res) => {
 
 app.post("/images", upload.single('image'), async (req, res) => {
   //TODO: update req.file to proper file name
-  console.log("REQ.BODY.IMAGE:",req.body.imageMeta);
   console.log("REQ.FILE", req.file);
+
+  console.log("REQ.BODY.IMAGE:",req.body);
+  // console.log("REQ.FILE", req.file);
 
   const result = await imageFileHandler.saveToStorage(req.file);
   console.log("SUCCESS! RESULT:", result);
