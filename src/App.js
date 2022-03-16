@@ -6,10 +6,10 @@ import PixlyApi from './Models';
 function App() {
 
 
-  async function saveImage(formData){
+  async function saveImage(formData, formFieldsData){
     // TODO: PixlyApi.post(formdata);
-    console.log("formData in saveImage", formData);
-    const response = await PixlyApi.saveImage(formData);
+    console.log("formData in saveImage", formData, formFieldsData);
+    const response = await PixlyApi.saveImage(formData, formFieldsData);
   }
 
 

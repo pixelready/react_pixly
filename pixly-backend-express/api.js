@@ -2,7 +2,6 @@
 
 
 require('dotenv').config();
-const path = require('path');
 const fs = require('fs');
 
 const AWS = require('aws-sdk');
@@ -20,6 +19,7 @@ const SAVE_IMAGE_PATH = "../images/";
 
 class imageFileHandler{
     static async saveToStorage(file){
+        console.debug("saving file to storage:",file);
         
         // Create S3 service object
         const s3 = new AWS.S3({apiVersion: '2006-03-01'});
@@ -28,14 +28,14 @@ class imageFileHandler{
         const uploadParams = {Bucket: BUCKET_NAME, Key: '', Body: ''};
 
         // Configure the file stream and obtain the upload parameters
-        
-        const fileStream = fs.createReadStream(file);
+        console.log("FILE:", file)
+        const fileStream = fs.createReadStream(file.path);
             fileStream.on('error', function(err) {
             console.log('File Error', err);
         });
 
         uploadParams.Body = fileStream;
-        uploadParams.Key = path.basename(file);
+        uploadParams.Key = `${file.filename}.jpg`;
 
         // call S3 to retrieve upload file to specified bucket
         s3.upload (uploadParams, function (err, data) {

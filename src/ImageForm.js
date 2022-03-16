@@ -4,12 +4,19 @@ import EXIF from "exif-js";
 function ImageForm({ saveImage }) {
   //ADDED: image form handling, button to submit save?
   //Handle change and handle submit, form input state
-  const [formData, setFormData] = useState(null);
-  console.log("ImageForm!", formData);
+  const [formFieldsData, setFormFieldsData] = useState(null);
+  console.log("ImageForm!", formFieldsData);
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    saveImage(formData);
+
+    let formData = new FormData();
+  
+    //Adding files to the formdata
+    formData.append("image", formFieldsData.image);
+    formData.append("name", "Name");
+
+    saveImage(formData, formFieldsData);
   }
   //EXIF.pretty and EXIF.getTag
   //input file is a file like: {name: 'funnyImg.jpg', lastModified: ... , size: ..., type: "image/jpeg", ...}
@@ -19,13 +26,13 @@ function ImageForm({ saveImage }) {
 
     // EXIF.getData needs callback fn, setformData here? What is data look like?
     // possible: {image: "", exifdata: {location: ..., }}
-    // TODO: fix setFormData handling image on change
+    
     let data = EXIF.getData(imageFile, function () {
       // let exifData = EXIF.pretty(imageFile);
       const exifData = EXIF.getAllTags(imageFile);
       console.log("exifData", exifData);
-      setFormData((fData) => ({
-        ...fData,
+      setFormFieldsData((fFData) => ({
+        ...fFData,
         image: imageFile,
         Make: exifData.Make,
         Model: exifData.Model,
