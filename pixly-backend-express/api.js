@@ -1,6 +1,6 @@
-const fs = require('fs');
-var exifr = require('exifr');
-
+const fs = require("fs");
+var exifr = require("exifr");
+const db = require("../db");
 
 // Load the AWS SDK for Node.js
 require("dotenv").config();
@@ -36,22 +36,59 @@ class imageFileHandler {
   static async extractExif(fileUpload) {
     const parseExif = await exifr.parse(fileUpload.path);
     const imageMeta = {
-        make: parseExif.Make,
-        model: parseExif.Model,
-        focalLength: parseExif.FocalLength,
-        iso: parseExif.ISO,
-        dateTime: parseExif.DateTimeOriginal,
-        width: parseExif.ExifImageWidth,
-        height: parseExif.ExifImageHeight
-    }
-    
+      make: parseExif.Make,
+      model: parseExif.Model,
+      focalLength: parseExif.FocalLength,
+      iso: parseExif.ISO,
+      dateTime: parseExif.DateTimeOriginal,
+      width: parseExif.ExifImageWidth,
+      height: parseExif.ExifImageHeight,
+    };
+
     console.log("IMAGE META: ", imageMeta);
     return imageMeta;
   }
 
-  static async saveImageMetadataToDb() {
+  static async saveImageMetadataToDb({
+    filename,
+    s3ImagePath,
+    make,
+    model,
+    focalLength,
+    iso,
+    dateTime,
+    width,
+    height,
+  }) {
     //TODO: combine exif and form data, save to JSON
     //TODO: update to point to PSQL
+    //TODO: set up db
+    const result = await db.query(
+      `INSERT INTO images
+            (filename,
+            s3_image_path,
+            make,
+            model,
+            focal_length,
+            iso,
+            data_time,
+            width,
+            height)
+            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+            RETURNING filename, s3_image_path AS "s3ImagePath", make, model, focal_length AS "focalLength", iso, date_time AS "dateTime", width, height`,
+      [
+        filename,
+        s3ImagePath,
+        make,
+        model,
+        focalLength,
+        iso,
+        dateTime,
+        width,
+        height
+      ]
+    );
+      return result;
   }
 
   static async updateImageMetadataInDb() {
