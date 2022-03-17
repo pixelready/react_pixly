@@ -91,11 +91,16 @@ class imageFileHandler {
     );
       return result.rows[0];
   }
-  static async getAllImagesFromDb(){
+  static async getImagesFromDb(searchTerm){
+    console.log("Search Term ***********", searchTerm);
+    let whereParam = searchTerm === undefined ? '' : `%${searchTerm}%`;
+    let whereBuilder = searchTerm === undefined ? '' : `WHERE make ILIKE $1`;
         const allImages = await db.query(
             `SELECT id, filename, s3_image_path AS "s3ImagePath"
             FROM images
-            ORDER BY id`
+            ${whereBuilder}
+            ORDER BY id
+            `, [whereParam]
         )
         return allImages.rows;
 

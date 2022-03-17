@@ -4,7 +4,7 @@ const imageFileHandler = require("./api.js");
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
-const { getAllImagesFromDb } = require("./api.js");
+const { getImagesFromDb } = require("./api.js");
 const app = express();
 const port = 3001;
 
@@ -24,7 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/images", async (req,res)=>{
-  const images =  await getAllImagesFromDb();
+  const searchTerm = req.body; 
+  const images =  await getImagesFromDb(searchTerm);
   res.send(images);
 })
 

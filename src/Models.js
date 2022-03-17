@@ -29,10 +29,12 @@ class PixlyApi {
     console.log("frontend API response:", response);
   }
 
-  static async getImages(){
+  static async getImages(searchTerm){
     const images = await this.request('images');
     return images;
   }
+
+  
 }
 
 export default PixlyApi;
