@@ -25,8 +25,13 @@ class PixlyApi {
     // TODO: pass binary file to save
     // TODO: backend helper will write to file (fs)
 
-    const response = await this.request(`images`,imageData, "post");
+    const response = await this.request('images',imageData, "post");
     console.log("frontend API response:", response);
+  }
+
+  static async getImages(){
+    const images = await this.request('/images');
+    return images;
   }
 }
 

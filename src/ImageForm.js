@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EXIF from "exif-js";
+
 
 function ImageForm({ saveImage }) {
   //ADDED: image form handling, button to submit save?
@@ -27,16 +27,14 @@ function ImageForm({ saveImage }) {
     // EXIF.getData needs callback fn, setformData here? What is data look like?
     // possible: {image: "", exifdata: {location: ..., }}
     
-    let data = EXIF.getData(imageFile, function () {
-      // let exifData = EXIF.pretty(imageFile);
-      const exifData = EXIF.getAllTags(imageFile);
-      console.log("exifData", exifData);
+   
+    
       setFormFieldsData((fFData) => ({
         ...fFData,
         image: imageFile,
       }));
-    });
-    console.log("data", data);
+    
+    
   }
 
   return (

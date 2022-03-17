@@ -89,9 +89,17 @@ class imageFileHandler {
         height
       ]
     );
-      return result;
+      return result.rows[0];
   }
+  static async getAllImagesFromDb(){
+        const allImages = await db.query(
+            `SELECT id, filename, s3_image_path
+            FROM images
+            ORDER BY id`
+        )
+        return allImages.rows;
 
+  }
   static async updateImageMetadataInDb() {
     //TODO: update title and any other optional metadata fields in PSQL
   }
