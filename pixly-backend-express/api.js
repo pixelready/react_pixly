@@ -93,7 +93,7 @@ class imageFileHandler {
   }
   static async getAllImagesFromDb(){
         const allImages = await db.query(
-            `SELECT id, filename, s3_image_path
+            `SELECT id, filename, s3_image_path AS "s3ImagePath"
             FROM images
             ORDER BY id`
         )

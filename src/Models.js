@@ -30,7 +30,7 @@ class PixlyApi {
   }
 
   static async getImages(){
-    const images = await this.request('/images');
+    const images = await this.request('images');
     return images;
   }
 }

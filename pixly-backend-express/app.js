@@ -24,8 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/images", async (req,res)=>{
-  const images =  getAllImagesFromDb();
-  return images;
+  const images =  await getAllImagesFromDb();
+  res.send(images);
 })
 
 app.post("/images", upload.single('image'), async (req, res) => {
