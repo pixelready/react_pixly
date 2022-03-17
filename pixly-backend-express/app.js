@@ -25,18 +25,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/images", upload.single('image'), async (req, res) => {
-  //TODO: update req.file to proper file name
   console.log("REQ.FILE", req.file);
 
   console.log("REQ.BODY.IMAGE:",req.body);
   // console.log("REQ.FILE", req.file);
 
   const s3ImagePath = await imageFileHandler.saveToStorage(req.file);
-  console.log("S3 UPLOADED, PATH:", s3ImagePath );
   const exifMeta = await imageFileHandler.extractExif(req.file);
-  console.log("EXIF META: ", exifMeta)
 
-    const dbFields = {filename: req.file.name, s3ImagePath: s3ImagePath, ...exifMeta};
+    const dbFields = {filename: req.file.filename, s3ImagePath: s3ImagePath, ...exifMeta};
+    console.log("DBFIELDS:", dbFields);
     // TODO: save dbFields to PSQL DB
 });
 

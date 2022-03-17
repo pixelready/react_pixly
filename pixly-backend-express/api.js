@@ -1,5 +1,6 @@
-const fs = require("fs");
-const EXIF = require("exif-js");
+const fs = require('fs');
+var exifr = require('exifr');
+
 
 // Load the AWS SDK for Node.js
 require("dotenv").config();
@@ -32,29 +33,19 @@ class imageFileHandler {
     return `https://${S3_BUCKET_NAME}.s3-us-west-1.amazonaws.com/${key}`;
   }
 
-  static extractExif(fileUpload) {
-    let exifTags = {};
-    const file = fs.readFile(fileUpload.path, (err, data) => {
-      const imageBuffer = Buffer.from(data, "binary");
-      console.log("imageBuffer:", imageBuffer);
-      const image = EXIF.readFromBinaryFile(imageBuffer.buffer);
-      
-
-      const exifData = EXIF.getData(image, function () {
-        exifTags = EXIF.getAllTags(image);
-      });
-    });
-
-    let imageMeta = {
-      make: exifTags.Make,
-      model: exifTags.Model,
-      iso: exifTags.ISOSpeedRatings,
-      focalLength: exifTags.FocalLengthIn35mmFilm,
-      dateTime: exifTags.DateTime,
-      width: exifTags.PixelXDimension,
-      height: exifTags.PixelYDimension,
-    };
-    console.log("IMAGEMETA: ", imageMeta);
+  static async extractExif(fileUpload) {
+    const parseExif = await exifr.parse(fileUpload.path);
+    const imageMeta = {
+        make: parseExif.Make,
+        model: parseExif.Model,
+        focalLength: parseExif.FocalLength,
+        iso: parseExif.ISO,
+        dateTime: parseExif.DateTimeOriginal,
+        width: parseExif.ExifImageWidth,
+        height: parseExif.ExifImageHeight
+    }
+    
+    console.log("IMAGE META: ", imageMeta);
     return imageMeta;
   }
 
