@@ -1,6 +1,6 @@
 const fs = require("fs");
 var exifr = require("exifr");
-const db = require("../db");
+const db = require("./db");
 
 // Load the AWS SDK for Node.js
 require("dotenv").config();
@@ -63,6 +63,7 @@ class imageFileHandler {
     //TODO: combine exif and form data, save to JSON
     //TODO: update to point to PSQL
     //TODO: set up db
+
     const result = await db.query(
       `INSERT INTO images
             (filename,
@@ -71,7 +72,7 @@ class imageFileHandler {
             model,
             focal_length,
             iso,
-            data_time,
+            date_time,
             width,
             height)
             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)

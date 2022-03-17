@@ -4,8 +4,6 @@ const imageFileHandler = require("./api.js");
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
-const { extractExif } = require("./api.js");
-const fs = require('fs');
 const app = express();
 const port = 3001;
 
