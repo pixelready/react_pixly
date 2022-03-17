@@ -31,13 +31,13 @@ app.post("/images", upload.single('image'), async (req, res) => {
   console.log("REQ.BODY.IMAGE:",req.body);
   // console.log("REQ.FILE", req.file);
 
-  const result = await imageFileHandler.saveToStorage(req.file);
+  const s3ImagePath = await imageFileHandler.saveToStorage(req.file);
+  console.log("S3 UPLOADED, PATH:", s3ImagePath );
+  const exifMeta = await imageFileHandler.extractExif(req.file);
+  console.log("EXIF META: ", exifMeta)
 
-  // const fileStream = fs.readStream(req.file.path);
-  // const exifData = extractExif(fileStream);
-
-
-  console.log("SUCCESS! RESULT:", result);
+    const dbFields = {filename: req.file.name, s3ImagePath: s3ImagePath, ...exifMeta};
+    // TODO: save dbFields to PSQL DB
 });
 
 app.listen(port, () => {

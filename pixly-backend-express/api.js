@@ -1,7 +1,7 @@
 const fs = require('fs');
+const EXIF = require('exif-js');
 
 // Load the AWS SDK for Node.js
-
 require("dotenv").config();
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuid } = require("uuid");
@@ -32,8 +32,25 @@ class imageFileHandler {
     return `https://${S3_BUCKET_NAME}.s3-us-west-1.amazonaws.com/${key}`;
   }
 
-  static extractExif() {
-    //TODO: call EXIF and return metadata object
+  static extractExif(fileUpload) {
+    const file = fs.createReadStream(fileUpload.path);
+    let exifTags = {};
+    const exifData = EXIF.getData(file, function(){
+        exifTags = EXIF.getAllTags(file);
+    });
+
+    let imageMeta = {
+        make: exifTags.Make,
+        model: exifTags.Model,
+        iso: exifTags.ISOSpeedRatings,
+        focalLength: exifTags.FocalLengthIn35mmFilm,
+        dateTime: exifTags.DateTime,
+        width: exifTags.PixelXDimension,
+        height: exifTags.PixelYDimension
+    }
+    console.log("IMAGEMETA: ", imageMeta);
+    return imageMeta;
+
   }
 
   static async saveImageMetadataToDb() {
