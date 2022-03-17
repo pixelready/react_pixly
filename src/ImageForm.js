@@ -34,13 +34,6 @@ function ImageForm({ saveImage }) {
       setFormFieldsData((fFData) => ({
         ...fFData,
         image: imageFile,
-        Make: exifData.Make,
-        Model: exifData.Model,
-        ISOSpeedRatings: exifData.ISOSpeedRatings,
-        FocalLengthIn35mmFilm: exifData.FocalLengthIn35mmFilm,
-        DateTime: exifData.DateTime,
-        PixelXDimension: exifData.PixelXDimension,
-        PixelYDimension: exifData.PixelYDimension,
       }));
     });
     console.log("data", data);

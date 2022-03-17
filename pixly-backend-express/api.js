@@ -1,5 +1,5 @@
-const fs = require('fs');
-const EXIF = require('exif-js');
+const fs = require("fs");
+const EXIF = require("exif-js");
 
 // Load the AWS SDK for Node.js
 require("dotenv").config();
@@ -14,8 +14,8 @@ const S3_BUCKET_NAME = process.env.BUCKET_NAME;
 
 class imageFileHandler {
   static async saveToStorage(fileUpload) {
-      const file = fs.createReadStream(fileUpload.path);
-    const key = uuid()+'.jpg';
+    const file = fs.createReadStream(fileUpload.path);
+    const key = uuid() + ".jpg";
     const putObjectCommand = new PutObjectCommand({
       Bucket: S3_BUCKET_NAME,
       Key: key,
@@ -33,24 +33,29 @@ class imageFileHandler {
   }
 
   static extractExif(fileUpload) {
-    const file = fs.createReadStream(fileUpload.path);
     let exifTags = {};
-    const exifData = EXIF.getData(file, function(){
-        exifTags = EXIF.getAllTags(file);
+    const file = fs.readFile(fileUpload.path, (err, data) => {
+      const imageBuffer = Buffer.from(data, "binary");
+      console.log("imageBuffer:", imageBuffer);
+      const image = EXIF.readFromBinaryFile(imageBuffer.buffer);
+      
+
+      const exifData = EXIF.getData(image, function () {
+        exifTags = EXIF.getAllTags(image);
+      });
     });
 
     let imageMeta = {
-        make: exifTags.Make,
-        model: exifTags.Model,
-        iso: exifTags.ISOSpeedRatings,
-        focalLength: exifTags.FocalLengthIn35mmFilm,
-        dateTime: exifTags.DateTime,
-        width: exifTags.PixelXDimension,
-        height: exifTags.PixelYDimension
-    }
+      make: exifTags.Make,
+      model: exifTags.Model,
+      iso: exifTags.ISOSpeedRatings,
+      focalLength: exifTags.FocalLengthIn35mmFilm,
+      dateTime: exifTags.DateTime,
+      width: exifTags.PixelXDimension,
+      height: exifTags.PixelYDimension,
+    };
     console.log("IMAGEMETA: ", imageMeta);
     return imageMeta;
-
   }
 
   static async saveImageMetadataToDb() {
