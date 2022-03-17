@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // Load the AWS SDK for Node.js
 
 require("dotenv").config();
@@ -11,12 +13,13 @@ const s3 = new S3Client({ region: REGION });
 const S3_BUCKET_NAME = process.env.BUCKET_NAME;
 
 class imageFileHandler {
-  static async saveToStorage(file) {
-    const key = uuid();
+  static async saveToStorage(fileUpload) {
+      const file = fs.createReadStream(fileUpload.path);
+    const key = uuid()+'.jpg';
     const putObjectCommand = new PutObjectCommand({
       Bucket: S3_BUCKET_NAME,
       Key: key,
-      Body: file.buffer,
+      Body: file,
       ContentType: "image/jpeg",
       Tagging: "public=yes",
     });
