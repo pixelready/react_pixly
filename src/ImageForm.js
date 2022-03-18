@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Form, InputGroup, Input, FormText, Button, Card} from "reactstrap";
 
 
 function ImageForm({ saveImage }) {
@@ -34,14 +35,18 @@ function ImageForm({ saveImage }) {
         image: imageFile,
       }));
     
-    
   }
 
   return (
-    <form className="ImageForm" onSubmit={handleSubmit}>
-      <input className="ImageForm-Input" type="file" onChange={handleChange} />
-      <button className="ImageForm-Input">Save</button>
-    </form>
+    <Card className="my-5 w-50 p-3 mx-auto shadow">
+      <Form className="ImageForm mx-3 my-4" onSubmit={handleSubmit}>
+        <InputGroup>
+          <Input className="ImageForm-Input" type="file" onChange={handleChange} placeholder="upload a .jpeg or .jpg image" />
+          <Button type="submit" className="ImageForm-Input">Save</Button>
+        </InputGroup>
+        <FormText>Upload an image to the gallery. Only <strong>.jpg</strong> or <strong>.jpeg</strong> images are allowed.</FormText>
+      </Form>
+    </Card>
   );
 }
 

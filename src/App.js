@@ -1,12 +1,13 @@
 import { Route } from "react-router-dom";
-import { useLocation, BrowserRouter, Switch, Link } from "react-router-dom";
+import { useLocation, Switch} from "react-router-dom";
 import "./App.css";
 import ImageForm from "./ImageForm";
-import NavBar from "./NavBar";
+import Header from "./Header";
 import PixlyApi from "./Models";
 import ImageGallery from "./ImageGallery";
 import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm";
+import {Container, Spinner} from "reactstrap";
 
 function App() {
   const location = useLocation() || "/";
@@ -30,7 +31,12 @@ function App() {
   );
 
   if (images === null) {
-    return <h1>Loading...</h1>;
+    return (
+    <Container>
+      <Spinner>
+        Loading...
+      </Spinner>
+    </Container>);
   }
 
   
@@ -42,8 +48,8 @@ function App() {
     }
 
   return (
-    <div className="App">
-      <NavBar />
+    <Container fluid className="App">
+      <Header />
       <Switch>
         <Route exact path="/upload">
           <ImageForm saveImage={saveImage} />
@@ -53,7 +59,7 @@ function App() {
           <ImageGallery images={images} />
         </Route>
       </Switch>
-    </div>
+    </Container>
   );
 }
 

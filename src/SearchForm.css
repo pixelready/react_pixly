@@ -1,0 +1,7 @@
+.SearchForm input{
+    border-radius: .2rem 0 0 .2rem;
+}
+
+.SearchForm button{
+    border-radius: 0 .2rem .2rem 0;
+}

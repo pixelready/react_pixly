@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import {Navbar, Form, Input, Label, Button} from "reactstrap";
+import "./SearchForm.css";
 
 /**
  *  Obtains user search queries and provides them to a parent for filtering
@@ -23,16 +25,20 @@ function SearchForm({ addSearchCriteria }) {
   }
 
   return (
-    <form className="SearchForm" onSubmit={handleSubmission}>
-      <label htmlFor="userSearchInput">Search by camera make: </label>
-      <input
-        id="userSearchInput"
-        name="userSearchInput"
-        value={formData}
-        onChange={handleChange}
-      ></input>
-      <button className="SearchForm-btn">Search</button>
-    </form>
+    <Navbar light color="light">
+      <Form className="SearchForm d-flex flex-fill py-3 px-5" onSubmit={handleSubmission}>
+        <Input
+          id="userSearchInput"
+          name="userSearchInput"
+          value={formData}
+          onChange={handleChange}
+          bsSize="sm"
+          placeholder="search images by camera make"
+          className="flex-grow-1"
+        />
+        <Button className="SearchForm-btn">Search</Button>
+      </Form>
+    </Navbar>
   )
 }
 

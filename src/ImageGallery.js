@@ -10,7 +10,7 @@ function ImageGallery({ images }) {
   }
 
   return (
-    <div className="ImageGallery">
+    <div className="ImageGallery row row-cols-3 px-5">
       {images.map((i) => (
         <ImageThumbnail image={i} key={i.id} />
       ))}
