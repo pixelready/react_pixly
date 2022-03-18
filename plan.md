@@ -46,7 +46,7 @@ Upload w/ Title -> Static Folder + JSON Server Metadata (/Images)
 
   - Done: json server setup
   - POST /images
-  - //TODO: Create Model methods for images save and get (save to s3)
+  - Create Model methods for images save and get (save to s3)
 
 - Extract & parse EXIF Data
 
@@ -61,14 +61,18 @@ Upload w/ Title -> Static Folder + JSON Server Metadata (/Images)
     - PixelYDimension: 3088 <integer>
 
   - //Done: find EXIF library
-  - //TODO: handle file upload to S3
+  - handle file upload to S3
 
 View -> Uploaded files (React) \* GET /images
 
-- //TODO: Create file list view in React
+- Create file list view in React
 
 ## Phase 2
 
-Add Search filtering
+Add Search filtering (basic)
 
-- location?
+- camera make
+
+## Phase 3
+
+Fancy search (all fields, custom form)

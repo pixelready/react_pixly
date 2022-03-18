@@ -24,7 +24,7 @@ function SearchForm({ addSearchCriteria }) {
 
   return (
     <form className="SearchForm" onSubmit={handleSubmission}>
-      <label htmlFor="userSearchInput">Search: </label>
+      <label htmlFor="userSearchInput">Search by camera make: </label>
       <input
         id="userSearchInput"
         name="userSearchInput"

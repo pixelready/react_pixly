@@ -24,7 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/images", async (req,res)=>{
-  const searchTerm = req.body; 
+  const searchTerm = req.query.q; 
+  console.log("REQ PARAMS:", req.query);
   const images =  await getImagesFromDb(searchTerm);
   res.send(images);
 })
@@ -41,7 +42,6 @@ app.post("/images", upload.single('image'), async (req, res) => {
     const dbFields = {filename: req.file.filename, s3ImagePath: s3ImagePath, ...exifMeta};
     console.log("DBFIELDS:", dbFields);
     const imageData = await imageFileHandler.saveImageMetadataToDb(dbFields);
-    // TODO: save dbFields to PSQL DB
 });
 
 app.listen(port, () => {

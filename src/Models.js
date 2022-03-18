@@ -21,16 +21,12 @@ class PixlyApi {
   }
 
   static async saveImage(imageData, imageMetaData) {
-    // TODO: extract exif data
-    // TODO: pass binary file to save
-    // TODO: backend helper will write to file (fs)
-
     const response = await this.request('images',imageData, "post");
     console.log("frontend API response:", response);
   }
 
   static async getImages(searchTerm){
-    const images = await this.request('images');
+    const images = await this.request('images', {q:searchTerm});
     return images;
   }
 

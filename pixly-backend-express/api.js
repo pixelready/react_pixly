@@ -60,9 +60,6 @@ class imageFileHandler {
     width,
     height,
   }) {
-    //TODO: combine exif and form data, save to JSON
-    //TODO: update to point to PSQL
-    //TODO: set up db
 
     const result = await db.query(
       `INSERT INTO images
@@ -93,17 +90,26 @@ class imageFileHandler {
   }
   static async getImagesFromDb(searchTerm){
     console.log("Search Term ***********", searchTerm);
-    let whereParam = searchTerm === undefined ? '' : `%${searchTerm}%`;
-    let whereBuilder = searchTerm === undefined ? '' : `WHERE make ILIKE $1`;
-        const allImages = await db.query(
-            `SELECT id, filename, s3_image_path AS "s3ImagePath"
-            FROM images
-            ${whereBuilder}
-            ORDER BY id
-            `, [whereParam]
+    let allImages = [];
+    
+    if (searchTerm !== undefined){
+      const whereBuilder = `WHERE make ILIKE $1`;
+      const whereParam = `%${searchTerm}%`
+      allImages = await db.query(
+        `SELECT id, filename, s3_image_path AS "s3ImagePath"
+        FROM images
+        ${whereBuilder}
+        ORDER BY id
+        `, [whereParam]);
+    } else {
+      allImages = await db.query(
+        `SELECT id, filename, s3_image_path AS "s3ImagePath"
+        FROM images
+        ORDER BY id
+        `
         )
-        return allImages.rows;
-
+    }
+  return allImages?.rows;
   }
   static async updateImageMetadataInDb() {
     //TODO: update title and any other optional metadata fields in PSQL

@@ -14,7 +14,6 @@ function App() {
   const [images, setImages] = useState(null);
 
   async function saveImage(formData, formFieldsData) {
-    // TODO: PixlyApi.post(formdata);
     console.log("formData in saveImage", formData, formFieldsData);
     const response = await PixlyApi.saveImage(formData, formFieldsData);
   }
@@ -34,23 +33,13 @@ function App() {
     return <h1>Loading...</h1>;
   }
 
-  if (images.length === 0 && location.pathname === "/") {
-    return (
-      <h1>
-        No images found, want to{" "}
-        <Link to="/upload">
-          Upload one?
-        </Link>
-      </h1>
-    );
-  }
+  
 
     async function addSearchCriteria(searchTerm){
-      const images = await PixlyApi.getImages(searchTerm);
-      setImages(images);
+      const imageResults = await PixlyApi.getImages(searchTerm);
+      setImages(images => imageResults);
+      console.log("IMAGES STATE UPDATED:", images);
     }
-
-
 
   return (
     <div className="App">
