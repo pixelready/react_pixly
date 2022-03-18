@@ -3,9 +3,11 @@ import ImageThumbnail from "./ImageThumbnail";
 function ImageGallery({ images }) {
   if (images.length === 0) {
     return (
-      <strong>
-        No images found
-      </strong>
+      <div className="row">
+        <div className="col px-5 text-center fs-3 text-muted">
+          No images found
+        </div>
+      </div>
     );
   }
 
